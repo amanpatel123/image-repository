@@ -39,9 +39,8 @@ ActiveRecord::Schema.define(version: 2020_12_16_053359) do
   create_table "images", force: :cascade do |t|
     t.string "filename", null: false
     t.integer "slug", null: false
-    t.string "label"
-    t.string "String"
     t.bigint "user_id", null: false
+    t.string "label"
     t.index ["user_id"], name: "index_images_on_user_id"
   end
 
