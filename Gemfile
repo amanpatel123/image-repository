@@ -7,6 +7,7 @@ gem 'devise', '~> 4.2'
 gem 'jbuilder', '~> 2.7'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'react-rails', '~> 2.6'
+gem 'graphql'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'
@@ -53,3 +54,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'graphiql-rails', '1.7.0', group: :development
