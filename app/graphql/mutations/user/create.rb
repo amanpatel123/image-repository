@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Mutations::User
-  class Update < Mutations::BaseMutation
-    graphql_name "UpdateUser"
-    description "updates the user"
+  class Create < Mutations::BaseMutation
+    graphql_name "CreateUser"
+    description "Create a new user"
 
     argument :user_attributes, Types::InputObjects::UserAttributes, required: true
 
@@ -10,24 +12,25 @@ module Mutations::User
 
 
     def resolve(user_attributes:)
-      user = User.find(context[:current_user].id)
-      update_attrs = approved_params(user_attributes)
-
-      begin
-        User.transaction do
-          user.update!(update_attrs)
-        end
-      rescue ActiveRecord::RecordInvalid
-      end
-      {
-        user: user.reload, 
-        errors: user.errors.full_messages
-      }
+      create_attrs = approved_params(user_attributes)
+      user = User.new(create_attrs)
+      
+      if user.save 
+        {
+          user: user,
+          errors: []
+        }
+      else
+        {
+          user: nil,
+          errors: user.errors.full_messages
+        }
+      end 
     end
 
     private
       def approved_params(user_attributes)
-        require_params(user_attributes.to_h, :email, :name, :role, :progress)
+        require_params(user_attributes.to_h, :email, :first_name, :last_name, :password)
       end
   end
 end
