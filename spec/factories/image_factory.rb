@@ -2,7 +2,6 @@
 
 FactoryBot.define do
   factory :image do
-    filename { "testname" }
     label { "A beautiful picture" }
     association :user
   end

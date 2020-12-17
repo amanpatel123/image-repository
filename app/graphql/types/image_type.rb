@@ -5,8 +5,7 @@ module Types
     graphql_name "Image"
     
     field :id, ID, null: false
-    field :filename, String, null: false
-    field :slug, String, null: false
+    field :slug, String, null: true
     field :label, String, null: false
     field :user, Types::UserType, null: false
   end

@@ -30,15 +30,14 @@ describe Types::QueryType do
     let!(:user_1) { create(:user, email: "user1@gmail.com") }
     let!(:user_2) { create(:user, email: "user2@gmail.com") }
 
-    let!(:image_1) { create(:image, filename: "image1", user: user_1) }
-    let!(:image_2) { create(:image, filename: "image2", user: user_1) }
-    let!(:image_3) { create(:image, filename: "image3", user: user_2) }
+    let!(:image_1) { create(:image, label: "image1", user: user_1) }
+    let!(:image_2) { create(:image, label: "image2", user: user_1) }
+    let!(:image_3) { create(:image, label: "image3", user: user_2) }
 
     let(:query) do
       <<~GRAPHQL
         query Images {
           images{
-            filename
             label
             slug
             user {
@@ -53,7 +52,7 @@ describe Types::QueryType do
       results = ImageRepositorySchema.execute(query)
 
       expect(results.dig("data", "images").size).to eq(3)
-      expect(results.dig("data", "images").pluck("filename")).to contain_exactly("image1", "image2", "image3") 
+      expect(results.dig("data", "images").pluck("label")).to contain_exactly("image1", "image2", "image3") 
     end
   end
 end
