@@ -1,0 +1,1 @@
+export { useImagesQuery, IMAGES_QUERY } from "./imagesQuery";

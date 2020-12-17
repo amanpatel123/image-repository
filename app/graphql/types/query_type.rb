@@ -10,8 +10,9 @@ module Types
       User.all
     end
 
+    #TODO: Preloading is not the best option, should be replaced by batch loading
     def images
-      Image.all
+      Image.preload(:user)
     end
   end
 end
