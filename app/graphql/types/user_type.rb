@@ -7,5 +7,6 @@ module Types
     field :id, ID, null: false
     field :email, String, null: true
     field :full_name, String, null: true
+    field :images, [Types::ImageType], null: true
   end
 end

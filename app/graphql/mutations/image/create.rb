@@ -8,6 +8,11 @@ module Mutations
       field :errors, [String], null: false
 
       def resolve(label:, user_id: )
+        if context[:current_user].nil?
+          raise GraphQL::ExecutionError,
+            "You need to authenticate to perform this action"
+        end
+
         image = ::Image.new(label: label, user: ::User.find_by(id: user_id))
 
         if image.save

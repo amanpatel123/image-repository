@@ -10,14 +10,14 @@ const NavBar = () => {
   return (
     <Navbar bg="light" expand="lg" sticky="top">
       <Navbar.Brand>
-        <Link className="navbar-brand" to="/home">
+        <Link className="navbar-brand" to="/gallery">
           Image Repository
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Link className="nav-link" to="/home">Images</Link>
+          <Link className="nav-link" to="/gallery">Images</Link>
           <Link className="nav-link" to="/my_uploads">My Uploads</Link>
         </Nav>
          { queryLoading ? 'Loading...'
