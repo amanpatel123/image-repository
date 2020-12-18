@@ -19,7 +19,6 @@ module Mutations
 
         if user.valid_password?(password)          
           token = Base64.encode64(user.email)
-          context[:session][:token] = token
           {
             token: token,
             user: user,

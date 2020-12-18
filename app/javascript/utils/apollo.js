@@ -12,17 +12,23 @@ const createCache = () => {
   return cache;
 };
 
-// This is done to pass forgery protection check in rails app
-const getToken = () =>
-  document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-const token = getToken();
-const setTokenForOperation = async operation =>
-  operation.setContext({
+const getTokens = () => {
+  const tokens = {
+    'X-CSRF-Token': document
+      .querySelector('meta[name="csrf-token"]')
+      .getAttribute('content'),
+  };
+  const authToken = localStorage.getItem('mlToken');
+  return authToken ? { ...tokens, Authorization: authToken } : tokens;
+};
+
+const setTokenForOperation = async operation => {
+  return operation.setContext({
     headers: {
-      'X-CSRF-Token': token,
+      ...getTokens(),
     },
   });
-
+};
 // link with token
 const createLinkWithToken = () =>
 new ApolloLink(
