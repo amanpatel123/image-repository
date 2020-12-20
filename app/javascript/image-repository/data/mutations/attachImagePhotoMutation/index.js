@@ -1,0 +1,1 @@
+export {useAttachImagePhotoMutation, ATTACH_IMAGE_PHOTO_MUTATION } from './attachImagePhotoMutation';

@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import { ImageGallery } from '../ImageGallery';
 import { ApolloProvider } from '../../components/Providers';
-import { Title, NavBar, UploadImage} from '../../components';
+import { Title, NavBar, ImageGrid} from '../../components';
+import { MyUploads } from '../MyUploads';
+import { Gallery } from '../Gallery';
 
 import "./App.css"
 
@@ -14,16 +15,15 @@ const App = () => {
         <Router>
           <NavBar />
           <Title />
-          <UploadImage />
           <Switch>
             <Route 
-              path="/gallery"
-              render={ (props) => <ImageGallery {...props}  /> } 
+              path="/repository/gallery"
+              render={ (props) => <Gallery {...props}  /> } 
               exact
             />
             <Route 
-              path="/my_uploads"
-              render={ (props) => <ImageGallery {...props}  /> } 
+              path="/repository/my_uploads"
+              render={ (props) => <MyUploads {...props} /> } 
               exact
             />
           </Switch>

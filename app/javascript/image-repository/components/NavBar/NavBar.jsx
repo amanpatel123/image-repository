@@ -17,8 +17,8 @@ const NavBar = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Link className="nav-link" to="/gallery">Images</Link>
-          <Link className="nav-link" to="/my_uploads">My Uploads</Link>
+          <Link className="nav-link" to="/repository/gallery">Images</Link>
+          <Link className="nav-link" to="/repository/my_uploads">My Uploads</Link>
         </Nav>
          { queryLoading ? 'Loading...'
             : data.currentUser 

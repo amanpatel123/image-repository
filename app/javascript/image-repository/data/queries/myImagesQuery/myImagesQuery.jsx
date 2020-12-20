@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 
-const name = "ImagesQuery";
+const name = "MyImagesQuery";
 
-const IMAGES_QUERY = gql`
+const MY_IMAGES_QUERY = gql`
   query ${name} {
-    images {
+    myImages {
       id
       label
       user {
@@ -17,6 +17,6 @@ const IMAGES_QUERY = gql`
   }
 `;
 
-const useImagesQuery = () => useQuery(IMAGES_QUERY);
+const useMyImagesQuery = () => useQuery(MY_IMAGES_QUERY);
 
-export { useImagesQuery, IMAGES_QUERY };
+export { useMyImagesQuery, MY_IMAGES_QUERY };

@@ -1,4 +1,7 @@
 class GraphqlController < ApplicationController
+  before_action do
+    ActiveStorage::Current.host = request.base_url
+ end
   # If accessing from outside this domain, nullify the session
   # This allows for outside API access while preventing CSRF attacks,
   # but you'll have to authenticate your user separately
