@@ -40,4 +40,95 @@ This project is still work in progress. Currently, what I have is ability to upl
 - Buy and Sell feature
 - UI Updates and fixes
 
-Queries and Mutation I 
+#### Queries and Mutations:
+```
+query {
+  users{
+    email
+    fullName
+    images {
+      id
+    }
+  }
+}
+
+query User($input:ID!){
+  user(userId: $input){
+    email
+    images {
+      id
+      
+    }
+  }
+}
+
+
+
+mutation createUser($input: CreateUserInput!){
+  userCreate(input: $input){
+    user {
+      email
+      fullName
+    }
+    errors
+  }
+}
+
+mutation imageCreate($input: CreateInput!){
+  imageCreate(input:$input) {
+    image {
+      id
+      label
+      
+    }
+    errors
+  }
+}
+
+mutation signInUser($input:SignInUserInput!){
+  userSignIn(input: $input){
+    token
+    user {
+     id
+    }
+    message 
+  }
+}
+
+query{
+  currentUser{
+    id
+  }
+}
+
+mutation createDirectUpload($input: CreateDirectUploadInput!) {
+ createDirectUpload(input: $input) {
+   directUpload {
+    url
+    signedBlobId
+    blobId
+    headers
+   }
+ }
+}
+
+mutation AttachImagePhoto($input: AttachImagePhotoInput!){
+  attachImagePhoto(input: $input){
+    user{
+      id
+    }
+  }
+}
+
+query {
+  images{
+    label
+    slug
+    user {
+      id
+    }
+    url
+  }
+}
+
+```
