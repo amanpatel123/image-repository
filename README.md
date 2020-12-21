@@ -4,10 +4,15 @@ Collection of Images
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+* Tech stack:
+```
+Ruby on Rails  
+GraphQl
+React
+```
 
-* Ruby version
-- ruby 2.7.0p0
+* ruby 2.7.0p0
+* rails 6.0.3.2
 
 * Setup
 ```
@@ -24,3 +29,15 @@ rails s
 
 * Deployment instructions
 `TBD`
+
+This is my submission to Shopify's backend challenge Summmer 2021. 
+This project is still work in progress. Currently, what I have is ability to upload images to `disk` if in `development` environment and on s3 bucket if in `production` environment. Application also have an ability to view their uploads and all uploads 
+
+
+#### Upcomming (Dec 21st will be my last final and the speed with which I finish these task will improve)
+- Currently working on search and sort feature
+- Pagination using GraphQL Realy
+- Buy and Sell feature
+- UI Updates and fixes
+
+Queries and Mutation I 
