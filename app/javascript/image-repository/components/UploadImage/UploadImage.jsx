@@ -1,23 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useCreateDirectUploadMutation } from '../../data/mutations';
 import { useAttachImagePhotoMutation } from '../../data/mutations';
+import { useMyImagesQuery , MY_IMAGES_QUERY } from '../../data/queries';
 import { getFileMetadata } from '../../helpers/getFileMetadata';
 import { directUpload } from '../../helpers/directUpload';
 
 import { ProgressBar } from '../ProgressBar';
 import "./uploadImage.css";
 
-const UploadImage = ({refetch}) => {
+const UploadImage = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
 
   const [createDirectUpload, { loading: directUploadMutationLoading }] = useCreateDirectUploadMutation();
-  const [attachImagePhoto] = useAttachImagePhotoMutation();
+  const [attachImagePhoto ] = useAttachImagePhotoMutation({
+    update(cache, { data }) {
+      const newImageDataFromResponse = data?.attachImagePhoto.image;
+      const existingImages = cache.readQuery({
+        query: MY_IMAGES_QUERY,
+      });
+
+      if(existingImages && newImageDataFromResponse) {
+        console.log(existingImages);
+        cache.writeQuery({
+          query: MY_IMAGES_QUERY,
+          data: {
+            myImages: [
+              ...existingImages?.myImages,
+              newImageDataFromResponse,
+            ],
+          },
+        });
+      }
+      const updatedImages = cache.readQuery({
+        query: MY_IMAGES_QUERY,
+      });
+      console.log(updatedImages);
+    }
+  });
 
 
   useEffect(()=>{
     metadata();
-    console.log(refetch);
   }, [file]);
 
   const changeHandler = (e) => {
@@ -54,9 +78,8 @@ const UploadImage = ({refetch}) => {
               }
             }
           })
-        })
+        });
       })
-      console.log(data);
       return data;
     }
   }

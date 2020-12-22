@@ -3,14 +3,15 @@ import { UploadImage, ImageGrid } from '../../components/';
 import { useGetMyUploads } from '../../hooks/useGetMyUploads';
 
 const MyUploads = () => {
-  const {images, refetch} = useGetMyUploads();
+  const { images } = useGetMyUploads();
+  console.log(images);
 
   return (
     <div>
-      <UploadImage refetch={refetch} />
-      <ImageGrid images={images}/>
+      <UploadImage />
+      <ImageGrid images={images} />
     </div>
- )
+ );
 }
 
 export { MyUploads };

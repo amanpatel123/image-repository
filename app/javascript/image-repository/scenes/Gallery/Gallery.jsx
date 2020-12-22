@@ -3,11 +3,11 @@ import { ImageGrid } from '../../components/';
 import { useGetImages } from '../../hooks/useGetImages';
 
 const Gallery = () => {
-  const data  = useGetImages();
+  const { images }  = useGetImages();
 
   return (
     <div>
-      <ImageGrid data={data} />
+      <ImageGrid images={ images } />
     </div>
  )
 }

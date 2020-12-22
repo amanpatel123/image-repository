@@ -5,11 +5,11 @@ import { useMyImagesQuery } from '../data/queries';
 const useGetMyUploads = () => {
   const [images, setImages] = useState([]);
 
-  const { data: myImagesdata, loading: myQueryLoading, refetch} = useMyImagesQuery();
+  const { data: myImagesdata, loading: myQueryLoading } = useMyImagesQuery();
 
   useEffect(() => {
     if(!myQueryLoading){
-      let documents = []
+      let documents = [];
       myImagesdata.myImages.forEach(image => {
         documents.push({user: image.user.fullName, label: images.label, url: image.url, id: image.id});
       });
@@ -18,7 +18,7 @@ const useGetMyUploads = () => {
     }
   }, [myQueryLoading]);
 
-  return { images, refetch} ;
+  return { images } ;
 }
 
 export { useGetMyUploads };

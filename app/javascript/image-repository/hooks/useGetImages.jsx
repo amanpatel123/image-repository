@@ -17,7 +17,7 @@ const useGetImages = () => {
     }
   }, [queryLoading]);
 
-  return images;
+  return { images };
 }
 
 export { useGetImages };
