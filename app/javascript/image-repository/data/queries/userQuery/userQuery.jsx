@@ -6,11 +6,13 @@ const name = "UserQuery";
 const USER_QUERY = gql`
   query User($input:ID!){
     user(userId: $input){
+      id
       email
       images {
         id
         label
       }
+      fullName
     }
   }
 `;
