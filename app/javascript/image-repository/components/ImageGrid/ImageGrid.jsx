@@ -1,18 +1,16 @@
 import React from 'react';
-import { useGetImages } from '../../hooks/useGetImages';
-import { useGetMyUploads } from '../../hooks/useGetMyUploads'
 import { motion } from 'framer-motion';
 import './imageGrid.css';
 
-const ImageGrid = ({images, refetch}) => { 
+const ImageGrid = ({ edges }) => { 
+  console.log(edges)
   return (
     <div className="img-grid">
-      { images && images.map(image => (
-        <div className="img-wrap" key={image.id}>
-          <img src={image.url} alt="uploaded pic" />
+      { edges && edges.map(({node}) => (
+        <div className="img-wrap" key={node.id}>
+          <img src={node.url} alt="uploaded pic" />
         </div>
       ))}
-      
     </div>
   )
 }

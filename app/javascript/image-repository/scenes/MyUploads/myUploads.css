@@ -1,0 +1,7 @@
+.myUploads{
+  margin: 20px auto;
+}
+
+.btn-primary {
+    background-color: var(--secondary);
+}

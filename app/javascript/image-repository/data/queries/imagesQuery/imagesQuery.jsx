@@ -4,15 +4,23 @@ import gql from "graphql-tag";
 const name = "ImagesQuery";
 
 const IMAGES_QUERY = gql`
-  query ${name} {
-    images {
-      id
-      label
-      user {
-        id
-        fullName
+  query ${name}($after: String) {
+    images(first: 6, after: $after) {
+      pageInfo {
+        endCursor
+        hasNextPage
       }
-      url
+      edges {
+        node {
+          id
+          label
+          url
+          user {
+            id
+            fullName
+          }
+        }
+      }
     }
   }
 `;

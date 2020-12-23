@@ -6,7 +6,7 @@ module Mutations
  
       argument :blob_id, String, required: true
 
-      field :user, Types::UserType, null: true
+      field :image, Types::ImageType, null: false
 
       def resolve(blob_id:)
         current_user = context[:current_user]
@@ -19,7 +19,7 @@ module Mutations
         image.photo.attach(blob_id)
         image.save!
 
-        { user: current_user }
+        { image: image }
       end
     end
   end

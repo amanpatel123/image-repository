@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useCreateDirectUploadMutation } from '../../data/mutations';
 import { useAttachImagePhotoMutation } from '../../data/mutations';
+import { MY_IMAGES_QUERY } from '../../data/queries';
 import { getFileMetadata } from '../../helpers/getFileMetadata';
 import { directUpload } from '../../helpers/directUpload';
+import { Button } from 'react-bootstrap';
 
 import { ProgressBar } from '../ProgressBar';
 import "./uploadImage.css";
 
-const UploadImage = ({refetch}) => {
+const UploadImage = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
+  const [needRefresh, setNeedRefresh] = useState(null);
 
   const [createDirectUpload, { loading: directUploadMutationLoading }] = useCreateDirectUploadMutation();
-  const [attachImagePhoto] = useAttachImagePhotoMutation();
+  const [attachImagePhoto ] = useAttachImagePhotoMutation();
 
 
   useEffect(()=>{
     metadata();
-    console.log(refetch);
   }, [file]);
 
   const changeHandler = (e) => {
@@ -54,11 +56,16 @@ const UploadImage = ({refetch}) => {
               }
             }
           })
+        }).then(() => {
+          setNeedRefresh(true);
         })
       })
-      console.log(data);
       return data;
     }
+  }
+
+  const reloadPage = () => {
+    window.location.reload(false);
   }
 
   return (
@@ -70,6 +77,7 @@ const UploadImage = ({refetch}) => {
       <div className='preview'>
         { error && <div className="error"> {error} </div> }  
         { file && <div> {file.name} </div> } 
+        { needRefresh && <Button onClick={reloadPage}> Refresh </Button>}
       </div>
     </form>
   )
