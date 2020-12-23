@@ -7,7 +7,7 @@ GraphQl
 React
 ```
 
-#### requirements 
+#### Requirements 
 
 ```
 * ruby 2.7.0p0
@@ -55,10 +55,10 @@ Example Input:
 Once the user is created, go to http://localhost:3000/ and login. 
 ```
 
-* How to run the test suite
+#### How to run the test suite
 `rspec`
 
-* Deployment instructions
+#### Deployment instructions
 `TBD`
 
 This is my submission to Shopify's backend challenge Summmer 2021. Following are the features added till now:
