@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useCreateDirectUploadMutation } from '../../data/mutations';
 import { useAttachImagePhotoMutation } from '../../data/mutations';
-import { useMyImagesQuery , MY_IMAGES_QUERY } from '../../data/queries';
+import { MY_IMAGES_QUERY } from '../../data/queries';
 import { getFileMetadata } from '../../helpers/getFileMetadata';
 import { directUpload } from '../../helpers/directUpload';
+import { Button } from 'react-bootstrap';
 
 import { ProgressBar } from '../ProgressBar';
 import "./uploadImage.css";
@@ -11,33 +12,10 @@ import "./uploadImage.css";
 const UploadImage = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
+  const [needRefresh, setNeedRefresh] = useState(null);
 
   const [createDirectUpload, { loading: directUploadMutationLoading }] = useCreateDirectUploadMutation();
-  const [attachImagePhoto ] = useAttachImagePhotoMutation({
-    update(cache, { data }) {
-      const newImageDataFromResponse = data?.attachImagePhoto.image;
-      const existingImages = cache.readQuery({
-        query: MY_IMAGES_QUERY,
-      });
-
-      if(existingImages && newImageDataFromResponse) {
-        console.log(existingImages);
-        cache.writeQuery({
-          query: MY_IMAGES_QUERY,
-          data: {
-            myImages: [
-              ...existingImages?.myImages,
-              newImageDataFromResponse,
-            ],
-          },
-        });
-      }
-      const updatedImages = cache.readQuery({
-        query: MY_IMAGES_QUERY,
-      });
-      console.log(updatedImages);
-    }
-  });
+  const [attachImagePhoto ] = useAttachImagePhotoMutation();
 
 
   useEffect(()=>{
@@ -78,10 +56,16 @@ const UploadImage = () => {
               }
             }
           })
-        });
+        }).then(() => {
+          setNeedRefresh(true);
+        })
       })
       return data;
     }
+  }
+
+  const reloadPage = () => {
+    window.location.reload(false);
   }
 
   return (
@@ -93,6 +77,7 @@ const UploadImage = () => {
       <div className='preview'>
         { error && <div className="error"> {error} </div> }  
         { file && <div> {file.name} </div> } 
+        { needRefresh && <Button onClick={reloadPage}> Refresh </Button>}
       </div>
     </form>
   )

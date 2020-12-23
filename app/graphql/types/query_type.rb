@@ -5,8 +5,8 @@ module Types
 
     field :current_user, Types::UserType, null: true, description: "returns the signed in user"
     field :users, [Types::UserType], null: false, description: "returns all the users"
-    field :images, [Types::ImageType], null: false, description: "returns all the Images"
-    field :my_images, [Types::ImageType], null: false, description: "returns all the images belonging to the current user"
+    field :images, Types::ImageType.connection_type, null: false, description: "returns all the Images"
+    field :my_images, Types::ImageType.connection_type, null: false, description: "returns all the images belonging to the current user"
 
 
     def current_user
@@ -23,7 +23,7 @@ module Types
 
     #TODO: Preloading is not the best option, should be replaced by batch loading
     def images
-      Image.preload(:user)
+      Image.preload(:user).order(created_at: :DESC)
     end
 
     def my_images
@@ -32,7 +32,7 @@ module Types
           "You need to authenticate to perform this action"
       end
       
-      context[:current_user].images
+      context[:current_user].images.order(created_at: :DESC)
     end
   end
 end

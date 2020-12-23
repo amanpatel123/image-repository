@@ -1,6 +1,4 @@
 import React from 'react'
-import { useImagesQuery } from '../../data/queries';
-
 
 const Repository = ({ useQuery }) => {
   const { data, loading: queryLoading } = useQuery();
