@@ -9,7 +9,7 @@ const NavBar = () => {
   const { data, loading: queryLoading } = useCurrentUserQuery();
   
   return (
-    <Navbar scrolling dark expand="md">
+    <Navbar expand="md">
       <Navbar.Brand>
         <Link className="navbar-brand" to="/repository/gallery">
           Image Repository

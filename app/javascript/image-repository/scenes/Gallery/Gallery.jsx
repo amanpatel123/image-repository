@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ImageGrid } from '../../components/';
+import { ImageGrid, Title } from '../../components/';
 import { Button } from 'react-bootstrap';
 import { useImagesQuery } from '../../data/queries';
 import './gallery';
@@ -29,12 +29,15 @@ const Gallery = () => {
   } 
 
   return (
-    <div className="gallery">
-      <ImageGrid edges={data.images.edges} />
-      <Button variant="primary" onClick={handleClick} disabled={queryLoading || !data.images.pageInfo.hasNextPage}>
-        Load More
-      </Button>
-    </div>
+    <>
+    <Title text="All Images"/>
+      <div className="gallery">  
+        <ImageGrid edges={data.images.edges} />
+        <Button variant="primary" onClick={handleClick} disabled={queryLoading || !data.images.pageInfo.hasNextPage}>
+          Load More
+        </Button>
+      </div>
+    </>
  )
 }
 

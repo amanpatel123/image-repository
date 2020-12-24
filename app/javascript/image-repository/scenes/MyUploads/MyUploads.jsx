@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UploadImage, ImageGrid } from '../../components/';
+import { UploadImage, ImageGrid, Title} from '../../components/';
 import { Button } from 'react-bootstrap';
 import { useMyImagesQuery } from '../../data/queries';
 import './myUploads';
@@ -30,13 +30,16 @@ const MyUploads = () => {
   }
 
   return (
-    <div className="myUploads">
-      <UploadImage />
-      <ImageGrid edges={data.myImages.edges} />
-      <Button variant="primary" onClick={handleClick} disabled={queryLoading || !data.myImages.pageInfo.hasNextPage}>
-        Load More
-      </Button>
-    </div>
+    <>
+      <Title text="My Uploads"/>
+      <div className="myUploads">
+        <UploadImage />
+        <ImageGrid edges={data.myImages.edges} />
+        <Button variant="primary" onClick={handleClick} disabled={queryLoading || !data.myImages.pageInfo.hasNextPage}>
+          Load More
+        </Button>
+      </div>
+    </>
  );
 }
 

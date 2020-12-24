@@ -6,11 +6,14 @@ const ImageGrid = ({ edges }) => {
   console.log(edges)
   return (
     <div className="img-grid">
-      { edges && edges.map(({node}) => (
-        <div className="img-wrap" key={node.id}>
-          <img src={node.url} alt="uploaded pic" />
-        </div>
-      ))}
+        { edges && edges.map(({node}) => (
+          <div className="img-wrap" key={node.id}>
+            <img src={node.url} alt="uploaded pic" />
+            <div className="img-overlay">
+              <div className="img-title">{node.label}</div>
+            </div>
+          </div>
+        ))}
     </div>
   )
 }

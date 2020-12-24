@@ -14,7 +14,6 @@ const App = () => {
       <ApolloProvider>
         <Router>
           <NavBar />
-          <Title />
           <Switch>
             <Route 
               path="/repository/gallery"
