@@ -1,0 +1,13 @@
+.navbar {
+  padding: 0.5rem 5rem;
+}
+nav {
+  color: var(--secondary);
+}
+.navbar-light .navbar-brand{
+  color: var(--secondary) !important;
+}
+
+.navbar .navbar-collapse .mr-auto .nav-link{
+  color: var(--secondary);
+}

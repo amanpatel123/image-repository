@@ -1,8 +1,8 @@
 body{
-  font-family: "Noto Serif";
+  font-family: "Open Sans";
   color: var(--secondary);
 }
 .App{
-  max-width: 960px;
   margin: 0 auto;
+  background-color: black;
 }
