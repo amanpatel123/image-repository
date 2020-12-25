@@ -16,7 +16,7 @@ React
 ```
 * Setup
 ```
-https://github.com/amanpatel123/image-repository.git
+git clone https://github.com/amanpatel123/image-repository.git
 cd image-repository
 bundle install
 yarn
