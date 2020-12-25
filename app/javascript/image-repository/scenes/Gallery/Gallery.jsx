@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useImagesQuery } from '../../data/queries';
 import './gallery';
 
-const Gallery = () => {
+const Gallery = ({setSelectedImg}) => {
   const { data, loading: queryLoading, error, fetchMore } = useImagesQuery();
 
   if(error) return <div>There was some error on our end</div>
@@ -32,7 +32,7 @@ const Gallery = () => {
     <>
     <Title text="All Images"/>
       <div className="gallery">  
-        <ImageGrid edges={data.images.edges} />
+        <ImageGrid edges={data.images.edges} setSelectedImg={setSelectedImg}/>
         <Button variant="primary" onClick={handleClick} disabled={queryLoading || !data.images.pageInfo.hasNextPage}>
           Load More
         </Button>

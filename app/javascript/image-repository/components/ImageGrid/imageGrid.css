@@ -10,6 +10,7 @@
   padding: 50% 0;
   /* padding controls height, will always be perfectly square regardless of width */
   position: relative;
+  cursor: pointer;
   transition: transform .25s ease;
 }
 
