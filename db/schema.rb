@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_25_060444) do
+ActiveRecord::Schema.define(version: 2020_12_25_064320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,13 @@ ActiveRecord::Schema.define(version: 2020_12_25_060444) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "image_tags", force: :cascade do |t|
+    t.bigint "image_id"
+    t.bigint "tag_id"
+    t.index ["image_id"], name: "index_image_tags_on_image_id"
+    t.index ["tag_id"], name: "index_image_tags_on_tag_id"
+  end
+
   create_table "images", force: :cascade do |t|
     t.string "slug"
     t.string "label"
@@ -43,6 +50,13 @@ ActiveRecord::Schema.define(version: 2020_12_25_060444) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["user_id"], name: "index_images_on_user_id"
+  end
+
+  create_table "images_tags", force: :cascade do |t|
+    t.bigint "images_id"
+    t.bigint "tag_id"
+    t.index ["images_id"], name: "index_images_tags_on_images_id"
+    t.index ["tag_id"], name: "index_images_tags_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
