@@ -67,6 +67,7 @@ This is my submission to Shopify's backend challenge Summmer 2021. Following are
 - Application also have an ability to view their uploads and all uploads
 - Pagination (Cursor based pagination) and displaying Images in sorted fashion
 
+![](images/Page1.png)
 
 #### Upcomming (Dec 21st will be my last final and the speed with which I finish these task will improve)
 - Currently working on search
