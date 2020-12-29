@@ -13,6 +13,7 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       # Query context goes here, for example:
+      base_url: request&.base_url,
       current_user: current_user
     }
     result = ImageRepositorySchema.execute(query, variables: variables, context: context, operation_name: operation_name)

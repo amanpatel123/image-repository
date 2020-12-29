@@ -12,7 +12,7 @@ module Types
 
     def url
       if object.photo.attached?
-        Rails.application.routes.url_helpers.url_for(object.photo)
+        context[:base_url] + Rails.application.routes.url_helpers.rails_blob_path(object.photo)
       else
         nil
       end
