@@ -15,6 +15,7 @@ const IMAGES_QUERY = gql`
           id
           label
           url
+          tags
           user {
             id
             fullName

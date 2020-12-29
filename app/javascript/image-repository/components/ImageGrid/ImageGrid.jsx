@@ -7,7 +7,7 @@ const ImageGrid = ({ edges, setSelectedImg}) => {
     <div className="img-grid">
         { edges && edges.map(({node}) => (
           <div className="img-wrap" key={node.id}
-            onClick={() => {setSelectedImg(node.url)}}>
+            onClick={() => {setSelectedImg(node)}}>
             <img src={node.url} alt="uploaded pic" />
             <div className="img-overlay">
               <div className="img-title">{node.label}</div>

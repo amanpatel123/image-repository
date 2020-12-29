@@ -9,6 +9,7 @@ module Types
     field :label, String, null: false
     field :user, Types::UserType, null: false
     field :url, String, null: true
+    field :tags, String, null: false
 
     def url
       if object.photo.attached?
@@ -16,6 +17,10 @@ module Types
       else
         nil
       end
+    end
+
+    def tags
+      object.tags.pluck(:name).join(", ")
     end
   end
 end

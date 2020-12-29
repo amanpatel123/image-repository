@@ -18,18 +18,22 @@ const Modal = ({ setSelectedImg, selectedImg }) => {
       <div className="photo__container" >
         <div className="photo__description">
           <div className="photo__info">
-            <h1>Holiday Hand Holders Photo</h1>
+            <h1>{selectedImg.label}</h1>
             <p>
             
             </p>
           </div>
-          <Button variant="primary">Download</Button>
-          <p><b>Photo by: </b> Aman Patel</p>
-          <p><b>Tags: </b> Holiday, Christmas</p>
+          <a href={selectedImg.url} download>
+            <Button variant="primary">
+              Download
+            </Button>
+          </a>
+          <p><b>Photo by: </b>{selectedImg.user.fullName}</p>
+          <p><b>Tags: </b>{selectedImg.tags}</p>
         </div>
 
         <div className="photo__imageholder">
-          <motion.img src={selectedImg} alt="enlarged pic" 
+          <motion.img src={selectedImg.url} alt="enlarged pic" 
             initial={{ y: "-100vh" }}
             animate={{ y: 0 }}
             transition={"easeIn"}
