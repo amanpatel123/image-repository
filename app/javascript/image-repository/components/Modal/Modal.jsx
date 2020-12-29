@@ -20,7 +20,7 @@ const Modal = ({ setSelectedImg, selectedImg }) => {
           <div className="photo__info">
             <h1>{selectedImg.label}</h1>
             <p>
-            
+              {selectedImg.description}
             </p>
           </div>
           <a href={selectedImg.url} download>
