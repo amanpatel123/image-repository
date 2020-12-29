@@ -1,13 +1,14 @@
-form{
+.upload__image__form {
   margin: 30px auto 10px;
   text-align: center;
 }
-label input{
+.upload__image__input {
   height: 0;
   width: 0;
   opacity: 0;
 }
-label{
+
+.upload__image__label{
   display: block;
   width: 30px;
   height: 30px;
@@ -19,7 +20,8 @@ label{
   font-weight: bold;
   font-size: 24px;
 }
-label:hover{
+
+.upload__image__label:hover{
   background: var(--primary);
   color: white;
 }

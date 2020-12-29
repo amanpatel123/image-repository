@@ -4,21 +4,34 @@ module Mutations
       graphql_name "AttachImagePhoto"
       description "Attach or Update Image photo by updating the blob"
  
-      argument :blob_id, String, required: true
+      argument :input, Types::InputObjects::ImageAttributes, required: true
 
       field :image, Types::ImageType, null: false
 
-      def resolve(blob_id:)
+      def resolve(input:)
         current_user = context[:current_user]
         
         if current_user.nil?
           raise GraphQL::ExecutionError,
             "You need to authenticate to perform this action"
         end
-        image = ::Image.new(label: "Temp Label", user: current_user)
-        image.photo.attach(blob_id)
-        image.save!
 
+        image = ::Image.new(label: input.label.titleize, description: input.description, user: current_user)
+        image.photo.attach(input.blob_id)
+        
+        byebug
+        input.tags.split(',').each do |tag|
+          formate_tag = tag.strip.titleize
+          available_tag = ::Tag.find_by(name: formate_tag)
+          if available_tag
+            image.tags << available_tag
+          else
+            tag_instance = ::Tag.create(name: formate_tag)
+            image.tags << tag_instance
+          end
+        end
+
+        image.save!
         { image: image }
       end
     end

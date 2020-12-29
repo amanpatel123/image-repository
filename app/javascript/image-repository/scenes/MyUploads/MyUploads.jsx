@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { UploadImage, ImageGrid, Title} from '../../components/';
+import { UploadImage, ImageGrid, Title, Modal } from '../../components/';
 import { Button } from 'react-bootstrap';
 import { useMyImagesQuery } from '../../data/queries';
 import './myUploads';
 
-const MyUploads = ({setSelectedImg}) => {
+const MyUploads = () => {
+  const [selectedImg, setSelectedImg] = useState(null);
+
   const { data, loading: queryLoading, error, fetchMore } = useMyImagesQuery();
 
   if(error) return <div>There was some error on our end</div>
@@ -39,6 +41,7 @@ const MyUploads = ({setSelectedImg}) => {
           Load More
         </Button>
       </div>
+      {selectedImg && <Modal setSelectedImg={setSelectedImg} selectedImg={selectedImg} />}
     </>
  );
 }

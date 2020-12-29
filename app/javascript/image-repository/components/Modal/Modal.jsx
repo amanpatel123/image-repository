@@ -4,8 +4,6 @@ import { Button } from 'react-bootstrap';
 import './modal.css';
 
 const Modal = ({ setSelectedImg, selectedImg }) => {
-  console.log(selectedImg);
-
   const handleClick = (e) => {
     if (e.target.classList.contains('backdrop') || e.target.classList.contains('photo')) {
       setSelectedImg(null);
@@ -22,7 +20,7 @@ const Modal = ({ setSelectedImg, selectedImg }) => {
           <div className="photo__info">
             <h1>Holiday Hand Holders Photo</h1>
             <p>
-              A couple hold hands and share some love this holiday season. With the tree all trimmed and ready for Christmas behind them, they are celebrating being together this festive time of year.
+            
             </p>
           </div>
           <Button variant="primary">Download</Button>

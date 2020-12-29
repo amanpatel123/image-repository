@@ -59,6 +59,7 @@ justify-content: left;
   justify-content: center;
   align-items: center;
   border-radius: 0 10px 10px 0;
+  flex-basis: 70%;
 }
 
 .backdrop img{

@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import './imageGrid.css';
 
 const ImageGrid = ({ edges, setSelectedImg}) => { 
-  console.log(edges)
   return (
     <div className="img-grid">
         { edges && edges.map(({node}) => (

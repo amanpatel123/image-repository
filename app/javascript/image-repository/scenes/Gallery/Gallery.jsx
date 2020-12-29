@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { ImageGrid, Title } from '../../components/';
+import { ImageGrid, Title, Modal } from '../../components/';
 import { Button } from 'react-bootstrap';
 import { useImagesQuery } from '../../data/queries';
 import './gallery';
 
-const Gallery = ({setSelectedImg}) => {
+const Gallery = () => {
+  const [selectedImg, setSelectedImg] = useState(null);
+
   const { data, loading: queryLoading, error, fetchMore } = useImagesQuery();
 
   if(error) return <div>There was some error on our end</div>
@@ -37,6 +39,7 @@ const Gallery = ({setSelectedImg}) => {
           Load More
         </Button>
       </div>
+      {selectedImg && <Modal setSelectedImg={setSelectedImg} selectedImg={selectedImg} />}
     </>
  )
 }

@@ -1,26 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useCreateDirectUploadMutation } from '../../data/mutations';
-import { useAttachImagePhotoMutation } from '../../data/mutations';
-import { MY_IMAGES_QUERY } from '../../data/queries';
-import { getFileMetadata } from '../../helpers/getFileMetadata';
-import { directUpload } from '../../helpers/directUpload';
 import { Button } from 'react-bootstrap';
-
-import { ProgressBar } from '../ProgressBar';
+import { Modal } from './Modal';
 import "./uploadImage.css";
 
 const UploadImage = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [needRefresh, setNeedRefresh] = useState(null);
-
-  const [createDirectUpload, { loading: directUploadMutationLoading }] = useCreateDirectUploadMutation();
-  const [attachImagePhoto ] = useAttachImagePhotoMutation();
-
-
-  useEffect(()=>{
-    metadata();
-  }, [file]);
 
   const changeHandler = (e) => {
     let selected = e.target.files[0];
@@ -36,50 +22,26 @@ const UploadImage = () => {
     }
   }
 
-  const metadata = () => {
-    if(file && !directUploadMutationLoading){
-      const data = getFileMetadata(file).then((metadata) => {
-        return  createDirectUpload({ 
-          variables: {
-            "input":{
-              "input": metadata
-            }
-        }
-        });
-      }).then((result) => {
-        const upload =  result.data.createDirectUpload.directUpload
-        return directUpload(upload.url, JSON.parse(upload.headers), file).then(() =>{
-          return attachImagePhoto({
-            variables: {
-              "input": {
-                "blobId": upload.signedBlobId
-              }
-            }
-          })
-        }).then(() => {
-          setNeedRefresh(true);
-        })
-      })
-      return data;
-    }
-  }
-
   const reloadPage = () => {
     window.location.reload(false);
   }
 
   return (
-    <form>
-      <label>
-        <input type="file" onChange={changeHandler}/>
-        <span>+</span>
-      </label>
+    <>
+      <form className="upload__image__form">
+        <label className="upload__image__label">
+          <input className="upload__image__input" type="file" onChange={changeHandler}/>
+          <span>+</span>
+        </label>
+      </form>
       <div className='preview'>
         { error && <div className="error"> {error} </div> }  
-        { file && <div> {file.name} </div> } 
+        {file && 
+            <Modal file={file} setFile={setFile} setNeedRefresh={setNeedRefresh} /> 
+        } 
         { needRefresh && <Button onClick={reloadPage}> Refresh </Button>}
-      </div>
-    </form>
+      </div> 
+    </>
   )
 }
 

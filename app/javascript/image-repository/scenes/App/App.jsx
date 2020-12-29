@@ -9,9 +9,6 @@ import { Gallery } from '../Gallery';
 import "./App.css"
 
 const App = () => {
-  const [selectedImg, setSelectedImg] = useState(null);
-  console.log(selectedImg);
-
   return (
     <div className="App">
       <ApolloProvider>
@@ -20,16 +17,15 @@ const App = () => {
           <Switch>
             <Route 
               path="/repository/gallery"
-              render={ (props) => <Gallery {...props} setSelectedImg={setSelectedImg} /> } 
+              render={ (props) => <Gallery {...props} /> } 
               exact
             />
             <Route 
               path="/repository/my_uploads"
-              render={ (props) => <MyUploads {...props} setSelectedImg={setSelectedImg} /> } 
+              render={ (props) => <MyUploads {...props} /> } 
               exact
             />
           </Switch>
-          {selectedImg && <Modal setSelectedImg={setSelectedImg} selectedImg={selectedImg} />}
         </Router>
       </ApolloProvider>
     </div>
