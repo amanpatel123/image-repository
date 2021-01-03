@@ -65,10 +65,12 @@ This is my submission to Shopify's backend challenge Summmer 2021. Following are
 
 - This project is still work in progress. Currently, what I have is ability to upload images to `disk` if in `development` environment and on s3 bucket if in `production` environment. 
 - Application also have an ability to view their uploads and all uploads
+- Uploading and Image to S3 storage
+- Deleting and Image
 - Pagination (Cursor based pagination) and displaying Images in sorted fashion
 
 ![](images/Page1.png)
 
 #### Upcomming
-- Currently working on search
+- Currently working on search based on Tags
 - Refactoring
