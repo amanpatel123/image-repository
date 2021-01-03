@@ -1,0 +1,1 @@
+export { useDeleteImageMutation, DELETE_IMAGE_MUTATION } from './deleteImageMutation';

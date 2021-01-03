@@ -6457,6 +6457,13 @@ react-apollo@^3.1.5:
     "@apollo/react-hooks" "^3.1.5"
     "@apollo/react-ssr" "^3.1.5"
 
+react-bootstrap-icons@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/react-bootstrap-icons/-/react-bootstrap-icons-1.2.3.tgz#af142830b8f017a7e459790aba579ae05ed85214"
+  integrity sha512-VPQFuFMVwsK93FTbvE/8InUbX5irc2VlQbCOiMvj80oei6+xek0Q5sOpHPdgVRUn2BeiCAAc9OEOgrebZLWLMA==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-bootstrap@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/react-bootstrap/-/react-bootstrap-1.4.0.tgz#806a8b48b065cedfb28c6c5c7b0c0e3c3b53445d"

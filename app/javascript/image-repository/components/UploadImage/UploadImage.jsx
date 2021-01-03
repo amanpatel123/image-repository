@@ -6,7 +6,6 @@ import "./uploadImage.css";
 const UploadImage = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
-  const [needRefresh, setNeedRefresh] = useState(null);
 
   const changeHandler = (e) => {
     let selected = e.target.files[0];
@@ -37,9 +36,8 @@ const UploadImage = () => {
       <div className='preview'>
         { error && <div className="error"> {error} </div> }  
         {file && 
-            <Modal file={file} setFile={setFile} setNeedRefresh={setNeedRefresh} /> 
+            <Modal file={file} setFile={setFile}  /> 
         } 
-        { needRefresh && <Button onClick={reloadPage}> Refresh </Button>}
       </div> 
     </>
   )

@@ -6,16 +6,19 @@ import './myUploads';
 
 const MyUploads = () => {
   const [selectedImg, setSelectedImg] = useState(null);
+  const [deletePayLoad, setDeletePayLoad] = useState({
+    error: null,
+    message: null
+  });
 
-  const { data, loading: queryLoading, error, fetchMore } = useMyImagesQuery();
+  const { data, loading: queryLoading, error: gqlError, fetchMore } = useMyImagesQuery();
 
-  if(error) return <div>There was some error on our end</div>
+  if(gqlError) return <div>There was some error on our end</div>
   if(queryLoading) return <div>Loading...</div>
 
   const handleClick = (e) => {
     e.preventDefault();
     const { endCursor } = data.myImages.pageInfo;
-    console.log(endCursor);
 
     fetchMore({
       variables: {
@@ -33,10 +36,13 @@ const MyUploads = () => {
 
   return (
     <>
+      
       <Title text="My Uploads"/>
       <div className="myUploads">
         <UploadImage />
-        <ImageGrid edges={data.myImages.edges} setSelectedImg={setSelectedImg} />
+        {deletePayLoad.error && <p>{deletePayLoad.error}</p>}
+        {deletePayLoad.message && <p>{deletePayLoad.message}</p>}
+        <ImageGrid edges={data.myImages.edges} setSelectedImg={setSelectedImg} setDeletePayLoad={setDeletePayLoad}/>
         <Button variant="primary" onClick={handleClick} disabled={queryLoading || !data.myImages.pageInfo.hasNextPage}>
           Load More
         </Button>

@@ -6,9 +6,11 @@ import { useCreateDirectUploadMutation } from '../../../data/mutations';
 import { useAttachImagePhotoMutation } from '../../../data/mutations';
 import { getFileMetadata } from '../../../helpers/getFileMetadata';
 import { directUpload } from '../../../helpers/directUpload';
+import { MY_IMAGES_QUERY } from '../../../data/queries';
+
 import './modal.css';
 
-const Modal = ({file, setFile, setNeedRefresh}) => {
+const Modal = ({file, setFile }) => {
   const [label, setLabel] = useState(file.name.replaceAll("-", " ").split(".").slice(0, -1).join('.'));
   const [tags, setTags] = useState("");
   const [description, setDescription] = useState("");
@@ -32,7 +34,7 @@ const Modal = ({file, setFile, setNeedRefresh}) => {
   const metadata = () => {
     if(file && !directUploadMutationLoading){
       const data = getFileMetadata(file).then((metadata) => {
-        return  createDirectUpload({ 
+        return createDirectUpload({ 
           variables: {
             "input":{
               "input": metadata
@@ -53,10 +55,14 @@ const Modal = ({file, setFile, setNeedRefresh}) => {
                   "description": description
                 }
               }
-            }
+            },
+            refetchQueries: [
+              {
+                query: MY_IMAGES_QUERY,
+              },
+            ],
           })
         }).then(() => {
-          setNeedRefresh(true);
           setFile(null);
         })
       })
