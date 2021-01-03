@@ -58,8 +58,8 @@ Once the user is created, go to http://localhost:3000/ and login.
 #### How to run the test suite
 `rspec`
 
-#### Deployment instructions
-`TBD`
+#### Deployment
+Heroku
 
 This is my submission to Shopify's backend challenge Summmer 2021. Following are the features added till now:
 
@@ -69,7 +69,6 @@ This is my submission to Shopify's backend challenge Summmer 2021. Following are
 
 ![](images/Page1.png)
 
-#### Upcomming (Dec 21st will be my last final and the speed with which I finish these task will improve)
+#### Upcomming
 - Currently working on search
-- Buy and Sell feature
 - Refactoring
