@@ -10,6 +10,7 @@ module Types
     field :user, Types::UserType, null: false
     field :url, String, null: true
     field :tags, String, null: false
+    field :description, String, null: true
 
     def url
       if object.photo.attached?
