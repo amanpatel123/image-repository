@@ -25,6 +25,11 @@ const App = () => {
               render={ (props) => <MyUploads {...props} /> } 
               exact
             />
+            <Route 
+              path="/repository/search"
+              render={ (props) => <Gallery {...props} /> } 
+              exact
+            />
           </Switch>
         </Router>
       </ApolloProvider>

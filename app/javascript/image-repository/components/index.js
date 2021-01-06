@@ -3,4 +3,4 @@ export { NavBar } from './NavBar';
 export { Title } from './Title';
 export { UploadImage } from './UploadImage';
 export { ImageGrid } from './ImageGrid';
-export {Modal} from './Modal';
+export { Modal } from './Modal';

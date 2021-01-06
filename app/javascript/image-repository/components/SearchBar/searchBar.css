@@ -1,0 +1,11 @@
+.searchbar__container {
+  display: flex;
+  flex-direction: row;
+}
+
+.searchbar__input {
+  width: 25em;
+}
+.searchbar__button {
+  margin-right: 1em;
+}
