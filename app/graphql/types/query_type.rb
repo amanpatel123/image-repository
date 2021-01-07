@@ -5,7 +5,9 @@ module Types
 
     field :current_user, Types::UserType, null: true, description: "returns the signed in user"
     field :users, [Types::UserType], null: false, description: "returns all the users"
-    field :images, Types::ImageType.connection_type, null: false, description: "returns all the Images"
+    field :images, Types::ImageType.connection_type, null: false, description: "returns all the Images" do
+      argument :tags, String, required: false
+    end 
     field :my_images, Types::ImageType.connection_type, null: false, description: "returns all the images belonging to the current user"
 
 
@@ -22,7 +24,16 @@ module Types
     end
 
     #TODO: Preloading is not the best option, should be replaced by batch loading
-    def images
+    def images(tags: "")
+      if tags.present?
+        t = ::Tag.find_by(name: tags.strip.titleize)
+        if t
+          return t.images.order(created_at: :DESC)
+        else
+          return []
+        end
+      end
+
       Image.preload(:user).order(created_at: :DESC)
     end
 

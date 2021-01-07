@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ImageGrid, Title, Modal } from '../../components/';
 import { Button } from 'react-bootstrap';
 import { useImagesQuery } from '../../data/queries';
 import './gallery';
+import { CodeSlash } from 'react-bootstrap-icons';
 
 const Gallery = () => {
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  }
+  let query = useQuery();
+  console.log("here", query.get("q"));
+
   const [selectedImg, setSelectedImg] = useState(null);
 
-  const { data, loading: queryLoading, error, fetchMore } = useImagesQuery();
+  const { data, loading: queryLoading, error, fetchMore } = useImagesQuery({
+    variables: {
+      tags: query.get("q")
+    }
+  });
 
   if(error) return <div>There was some error on our end</div>
   if(queryLoading) return <div>Loading...</div>
@@ -19,7 +31,8 @@ const Gallery = () => {
 
     fetchMore({
       variables: {
-        after: endCursor
+        after: endCursor,
+        tags: query.get("q"),
       },
       updateQuery: (prevResult, { fetchMoreResult }) => {
         fetchMoreResult.images.edges = [
@@ -29,7 +42,7 @@ const Gallery = () => {
       }
     })
   } 
-
+  
   return (
     <>
     <Title text="All Images"/>

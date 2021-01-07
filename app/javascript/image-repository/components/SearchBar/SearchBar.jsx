@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import './searchBar.css';
@@ -6,6 +6,12 @@ import './searchBar.css';
 const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [redirectToReferrer, setRedirectToReferrer] = useState(false);
+  
+  useEffect(() => {
+    return function(){
+      setRedirectToReferrer(false);
+    };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

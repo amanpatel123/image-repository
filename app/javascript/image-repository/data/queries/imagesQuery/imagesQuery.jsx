@@ -4,8 +4,8 @@ import gql from "graphql-tag";
 const name = "ImagesQuery";
 
 const IMAGES_QUERY = gql`
-  query ${name}($after: String) {
-    images(first: 6, after: $after) {
+  query ${name}($after: String, $tags: String) {
+    images(first: 6, tags: $tags, after: $after) {
       pageInfo {
         endCursor
         hasNextPage
@@ -27,6 +27,6 @@ const IMAGES_QUERY = gql`
   }
 `;
 
-const useImagesQuery = () => useQuery(IMAGES_QUERY);
+const useImagesQuery = (options) => useQuery(IMAGES_QUERY, options);
 
 export { useImagesQuery, IMAGES_QUERY };
