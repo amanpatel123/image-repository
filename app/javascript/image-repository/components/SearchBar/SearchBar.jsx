@@ -23,7 +23,7 @@ const SearchBar = ({ redirectToReferrer, setRedirectToReferrer }) => {
     <>
       <form className="searchbar__container" onSubmit={handleSubmit}>
         <div className="searchbar__input">
-          <input type="search" autoComplete="off" placeholder="Search" value={query} 
+          <input type="search" autoComplete="off" placeholder="Search by tags" value={query} 
           className="form-control input-lg" aria-label="label" aria-describedby="basic-addon1"
           onChange={(e)=>{setQuery(e.target.value)}}
           />
