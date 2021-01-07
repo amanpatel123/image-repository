@@ -32,6 +32,10 @@ const App = () => {
               render={ (props) => <Gallery {...props} setRedirectToReferrer={setRedirectToReferrer}/> } 
               exact
             />
+            <Route
+            path="/"
+            render={ () => <Redirect to={'/repository/gallery'} />}
+          />
           </Switch>
         </Router>
       </ApolloProvider>

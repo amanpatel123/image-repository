@@ -1,3 +1,9 @@
 .myUploads{
   padding: 0px 100px 100px 100px ;
+  min-height: 100vh;
+}
+
+.myUploads .myUploadsError{
+  color: white;
+  font-size: large;
 }

@@ -13,7 +13,6 @@ const MyUploads = () => {
 
   const { data, loading: queryLoading, error: gqlError, fetchMore } = useMyImagesQuery();
 
-  if(gqlError) return <div>There was some error on our end</div>
   if(queryLoading) return <div>Loading...</div>
 
   const handleClick = (e) => {
@@ -34,9 +33,19 @@ const MyUploads = () => {
     })
   }
 
+  if(gqlError) {
+    return  (
+      <div className="myUploads">
+        <pre>{gqlError.graphQLErrors.map(({ message }, i) => (
+              <span className="myUploadsError" key={i}>{message}</span>
+          ))}
+        </pre>
+      </div>
+    )
+  }
+
   return (
     <>
-      
       <Title text="My Uploads"/>
       <div className="myUploads">
         <UploadImage />
