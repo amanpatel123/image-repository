@@ -9,25 +9,27 @@ import { Gallery } from '../Gallery';
 import "./App.css"
 
 const App = () => {
+  const [redirectToReferrer, setRedirectToReferrer] = useState(false);
+
   return (
     <div className="App">
       <ApolloProvider>
         <Router>
-          <NavBar />
+          <NavBar redirectToReferrer={redirectToReferrer} setRedirectToReferrer={setRedirectToReferrer} />
           <Switch>
-            <Route 
+            <Route
               path="/repository/gallery"
-              render={ (props) => <Gallery {...props} /> } 
+              render={ (props) => <Gallery {...props} setRedirectToReferrer={setRedirectToReferrer} /> }
               exact
             />
             <Route 
               path="/repository/my_uploads"
-              render={ (props) => <MyUploads {...props} /> } 
+              render={ (props) => <MyUploads {...props} /> }
               exact
             />
             <Route 
               path="/repository/search"
-              render={ (props) => <Gallery {...props} /> } 
+              render={ (props) => <Gallery {...props} setRedirectToReferrer={setRedirectToReferrer}/> } 
               exact
             />
           </Switch>

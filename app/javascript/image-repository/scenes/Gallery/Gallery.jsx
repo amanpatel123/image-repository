@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ImageGrid, Title, Modal } from '../../components/';
 import { Button } from 'react-bootstrap';
 import { useImagesQuery } from '../../data/queries';
 import './gallery';
-import { CodeSlash } from 'react-bootstrap-icons';
 
-const Gallery = () => {
+const Gallery = ({ setRedirectToReferrer }) => {
   const useQuery = () => {
     return new URLSearchParams(useLocation().search);
   }
@@ -14,7 +13,9 @@ const Gallery = () => {
   console.log("here", query.get("q"));
 
   const [selectedImg, setSelectedImg] = useState(null);
-
+  useEffect(() => {
+    setRedirectToReferrer(false);
+  })
   const { data, loading: queryLoading, error, fetchMore } = useImagesQuery({
     variables: {
       tags: query.get("q")

@@ -6,7 +6,7 @@ import { SignInForm } from '../SignInForm';
 import { SearchBar } from '../SearchBar';
 import './navBar.css';
 
-const NavBar = () => {  
+const NavBar = ({ redirectToReferrer, setRedirectToReferrer }) => {  
   const { data, loading: queryLoading } = useCurrentUserQuery();
   
   return (
@@ -21,7 +21,7 @@ const NavBar = () => {
           <Link className="nav-link" to="/repository/gallery">Images</Link>
           <Link className="nav-link" to="/repository/my_uploads">My Uploads</Link>
         </Nav>
-        <SearchBar /> 
+        <SearchBar redirectToReferrer={redirectToReferrer} setRedirectToReferrer={setRedirectToReferrer} /> 
          { queryLoading ? 'Loading...'
             : data.currentUser 
               ? <>Welcome, {data.currentUser.fullName}!</>
