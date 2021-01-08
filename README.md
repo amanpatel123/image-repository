@@ -1,5 +1,5 @@
 # image-repository
-
+Graphiql Playground: https://stock-pics.herokuapp.com/graphiql
 #### Tech Stack
 ```
 Ruby on Rails  
