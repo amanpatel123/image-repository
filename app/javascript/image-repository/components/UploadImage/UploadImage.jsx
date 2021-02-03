@@ -38,7 +38,7 @@ const UploadImage = () => {
         {file && 
             <Modal file={file} setFile={setFile}  /> 
         } 
-      </div> 
+      </div>
     </>
   )
 }
