@@ -1,5 +1,5 @@
 # image-repository
-
+Graphiql Playground: https://stock-pics.herokuapp.com/graphiql
 #### Tech Stack
 ```
 Ruby on Rails  
@@ -68,9 +68,7 @@ This is my submission to Shopify's backend challenge Summmer 2021. Following are
 - Uploading and Image to S3 storage
 - Deleting and Image
 - Pagination (Cursor based pagination) and displaying Images in sorted fashion
-
-![](images/Page1.png)
+- Search based on Image Tags
 
 #### Upcomming
-- Currently working on search based on Tags
 - Refactoring
