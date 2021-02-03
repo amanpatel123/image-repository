@@ -20,14 +20,9 @@ module Types
     end
 
     #TODO: Preloading is not the best option, should be replaced by batch loading
-    def images(tags: "")
+    def images(tags: "" )
       if tags.present?
-        t = ::Tag.find_by(name: tags.strip.titleize)
-        if t
-          return t.images.order(created_at: :DESC)
-        else
-          return []
-        end
+        return Image.preload(:user).joins(:tags).where("tags.name LIKE ?", "%#{tags.strip.titleize}%")
       end
 
       Image.preload(:user).order(created_at: :DESC)
@@ -38,7 +33,7 @@ module Types
         raise GraphQL::ExecutionError,
           "You need to authenticate to perform this action"
       end
-      
+
       context[:current_user].images.order(created_at: :DESC)
     end
   end
