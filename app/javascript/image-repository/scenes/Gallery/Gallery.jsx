@@ -10,12 +10,13 @@ const Gallery = ({ setRedirectToReferrer }) => {
     return new URLSearchParams(useLocation().search);
   }
   let query = useQuery();
-  console.log("here", query.get("q"));
 
   const [selectedImg, setSelectedImg] = useState(null);
+  
   useEffect(() => {
     setRedirectToReferrer(false);
   })
+
   const { data, loading: queryLoading, error, fetchMore } = useImagesQuery({
     variables: {
       tags: query.get("q")
@@ -46,9 +47,9 @@ const Gallery = ({ setRedirectToReferrer }) => {
   
   return (
     <>
-    <Title text="All Images"/>
+      <Title text="All Images"/>
       <div className="gallery">  
-        <ImageGrid edges={data.images.edges} setSelectedImg={setSelectedImg}/>
+        <ImageGrid edges={data.images.edges} setSelectedImg={setSelectedImg} />
         <Button variant="primary" onClick={handleClick} disabled={queryLoading || !data.images.pageInfo.hasNextPage}>
           Load More
         </Button>

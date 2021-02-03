@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav} from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
 import { useCurrentUserQuery } from '../../data/queries';
 import { SignInForm } from '../SignInForm';
 import { SearchBar } from '../SearchBar';

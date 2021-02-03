@@ -8,14 +8,13 @@ module Mutations
       describe 'resolver' do
         let(:user) { create(:user, password: "password") }
 
-        # it 'Sign in a user' do
-        #   expect do
-        #     post '/graphql', params: { query: query, variables: variables(user) }
-        #   end.to change { ::User.count }.by(1)
-        # end
-        
-        context 'failure' do
+        it 'Sign in a user' do
+          post '/graphql', params: { query: query, variables: variables(user) }
 
+          expect(controller.current_user).to eq(user)
+        end
+
+        context 'failure' do
           it 'no account with the given email' do 
             variables =  {
               "input": {
@@ -30,8 +29,8 @@ module Mutations
 
             expect(data).to include(
               'message' => "Seems like you don't have an account with us",
-              'token'    => nil,
-              'user'     => nil
+              'token' => nil,
+              'user' => nil
             )
           end
 
@@ -49,8 +48,8 @@ module Mutations
 
             expect(data).to include(
               'message' => "Invalid credentials",
-              'token'    => nil,
-              'user'     => nil
+              'token' => nil,
+              'user' => nil
             )
           end
         end

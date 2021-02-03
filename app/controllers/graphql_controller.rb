@@ -11,8 +11,10 @@ class GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
+
     context = {
       # Query context goes here, for example:
+      session: session,
       base_url: request&.base_url,
       current_user: current_user
     }

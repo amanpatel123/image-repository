@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { useCurrentUserQuery, CURRENT_USER_QUERY } from '../../data/queries';
+import { CURRENT_USER_QUERY } from '../../data/queries';
 import { useMutation, SIGN_IN_USER_MUTATION } from '../../data/mutations';
 import './SignInForm.css';
 
@@ -22,10 +22,6 @@ const SignInForm = () => {
           event.preventDefault();
           signIn({
             variables: { input: { userEmail: email.current.value, password: password.current.value }},
-          }).then(({ data: { userSignIn: { token } } }) => {
-            if (token) {
-              localStorage.setItem('mlToken', token);
-            }
           });
         }}
       >

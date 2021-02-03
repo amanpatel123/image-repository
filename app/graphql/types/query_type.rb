@@ -19,10 +19,6 @@ module Types
       User.all
     end
 
-    def user(user_id:)
-      User.find_by(id: user_id)
-    end
-
     #TODO: Preloading is not the best option, should be replaced by batch loading
     def images(tags: "")
       if tags.present?

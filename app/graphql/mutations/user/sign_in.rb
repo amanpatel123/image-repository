@@ -17,8 +17,9 @@ module Mutations
         user = user_email.present? && ::User.find_by(email: user_email)
         return no_account_message unless user
 
-        if user.valid_password?(password)          
+        if user.valid_password?(password)
           token = Base64.encode64(user.email)
+          context[:session][:token] = token
           {
             token: token,
             user: user,
