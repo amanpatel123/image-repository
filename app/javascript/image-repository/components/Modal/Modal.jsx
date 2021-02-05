@@ -1,4 +1,5 @@
 import React from 'react';
+import { LikeButton } from '../LikeButton';
 import { motion } from 'framer-motion';
 import { Button } from 'react-bootstrap';
 import './modal.css';
@@ -30,6 +31,7 @@ const Modal = ({ setSelectedImg, selectedImg }) => {
           </a>
           <p><b>Photo by: </b>{selectedImg.user.fullName}</p>
           <p><b>Tags: </b>{selectedImg.tags}</p>
+          <LikeButton likedByCurrentUser={selectedImg.likeByCurrentUser} node={selectedImg}/>
         </div>
 
         <div className="photo__imageholder">

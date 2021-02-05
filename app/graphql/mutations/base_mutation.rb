@@ -5,6 +5,10 @@ module Mutations
     input_object_class Types::BaseInputObject
     object_class Types::BaseObject
 
+    def current_user
+      context[:current_user]
+    end
+
     def require_params(attributes, *approved)
       attributes.reduce({}) do |params, attribute|
         params[attribute.first] = attribute.last if approved.include?(attribute.first)

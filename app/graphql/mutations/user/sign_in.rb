@@ -31,7 +31,6 @@ module Mutations
       end
 
       private
-      
         def invalid_credentials_message
           {
             user: nil,

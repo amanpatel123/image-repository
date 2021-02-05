@@ -6,8 +6,16 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
 
   has_many :images, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_images, through: :likes, source: :image
 
   def full_name
     "#{first_name} ".capitalize  + "#{last_name}".capitalize
+  end
+
+  def liked(image_id:)
+    liked_image_ids = self.liked_images.pluck(:id)
+    
+    liked_image_ids.include?(image_id.to_i)
   end
 end

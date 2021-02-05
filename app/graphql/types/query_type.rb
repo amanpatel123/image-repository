@@ -33,8 +33,8 @@ module Types
         raise GraphQL::ExecutionError,
           "You need to authenticate to perform this action"
       end
-
-      context[:current_user].images.order(created_at: :DESC)
+      
+      current_user.images.order(created_at: :DESC)
     end
   end
 end

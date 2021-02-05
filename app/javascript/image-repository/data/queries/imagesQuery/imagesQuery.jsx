@@ -17,6 +17,8 @@ const IMAGES_QUERY = gql`
           url
           tags
           description
+          totalLikes
+          likeByCurrentUser
           user {
             id
             fullName
