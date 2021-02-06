@@ -17,7 +17,7 @@ module Mutations
           "checksum": compute_checksum_in_chunks(file),
           "contentType": content_type
         }
-        
+
         post '/graphql', params: { query: query, variables: variables(input: input) }
         json = JSON.parse(response.body)
         data = json['data']['createDirectUpload']['directUpload']
@@ -25,9 +25,8 @@ module Mutations
         expect(data.keys).to contain_exactly("blobId", "signedBlobId", "headers", "url")
         expect(data.keys).not_to include(nil)
       end
-      
     end
-    
+
     def query
       <<~GQL
         mutation($input:CreateDirectUploadInput!){

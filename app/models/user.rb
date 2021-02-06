@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   def liked(image_id:)
     liked_image_ids = self.liked_images.pluck(:id)
-    
+
     liked_image_ids.include?(image_id.to_i)
   end
 end
