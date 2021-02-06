@@ -9,8 +9,6 @@ module Mutations
       field :image, Types::ImageType, null: false
 
       def resolve(input:)
-        current_user = context[:current_user]
-        
         if current_user.nil?
           raise GraphQL::ExecutionError,
             "You need to authenticate to perform this action"
@@ -18,7 +16,7 @@ module Mutations
 
         image = ::Image.new(label: input.label.titleize, description: input.description, user: current_user)
         image.photo.attach(input.blob_id)
-        
+
         input.tags.split(',').each do |tag|
           formate_tag = tag.strip.titleize
           available_tag = ::Tag.find_by(name: formate_tag)

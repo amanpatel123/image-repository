@@ -35,7 +35,7 @@ module Mutations
           end
 
           it 'invalid credentials' do 
-            variables =  {
+            variables = {
               "input": {
                 "userEmail": user.email,
                 "password": "Letsgetit"

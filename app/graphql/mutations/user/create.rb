@@ -10,12 +10,11 @@ module Mutations::User
     field :user, Types::UserType, null: true
     field :errors, [String], null: false
 
-
     def resolve(user_attributes:)
       create_attrs = approved_params(user_attributes)
       user = User.new(create_attrs)
-      
-      if user.save 
+
+      if user.save
         {
           user: user,
           errors: []
@@ -25,7 +24,7 @@ module Mutations::User
           user: nil,
           errors: user.errors.full_messages
         }
-      end 
+      end
     end
 
     private

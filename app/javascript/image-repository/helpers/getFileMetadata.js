@@ -19,7 +19,7 @@ const getFileMetadata = (file) => {
         checksum: checkSum,
         filename: file.name,
         contentType: file.type,
-        byteSize: file.size
+        byteSize: file.size.toString()
       });
     });
   });
