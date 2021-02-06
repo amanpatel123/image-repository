@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 module Mutations::Image
-  RSpec.describe Create, type: :request do
+  RSpec.describe AttachImagePhoto, type: :request do
     describe 'resolver' do
       let(:user) { create(:user) }
       
