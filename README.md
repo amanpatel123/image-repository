@@ -65,7 +65,7 @@ Once the user is created, go to http://localhost:3000/ and login.
 #### Deployment
 Heroku
 
-This is my submission to Shopify's backend challenge Summmer 2021. Following are the features:
+#### This is my submission to Shopify's backend challenge Summmer 2021. Following are the features:
 
 - Ability to upload images to `disk` if in `development` environment and on s3 bucket if in `production` environment.
   - This is being done using **Active Storage**. An image have a photo attached to it. 
