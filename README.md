@@ -61,7 +61,6 @@ Once the user is created, go to http://localhost:3000/ and login.
 #### Associations
 ![diagram](Images/database.png)
 
-
 #### Deployment
 Heroku
 
@@ -84,7 +83,7 @@ Heroku
     - I use Direct Upload to save images to S3 storage which uses MD5 algorithm to hash the data of the file we are trying to upload.
     - Files are not transferred through our servers so bandwidth and even the slowest mobile clients are not a problem.
     - The signed_url sent by the s3 bucket is only valid to use for a short period of time.
-    
+    - ![diagram](Images/DirectUpload.png)
 
 #### Upcomming
 - Bulk Upload
