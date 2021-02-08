@@ -79,6 +79,12 @@ Heroku
   - Using a GraphQl mutation to query **Active Record** for images based on . Every Image has a tag attached, which is assigned or created while saving an Image to DB
  - Like Image
    - Any authenticated User can Like an image (Access Controll)
+ - Secure
+    - I used rails credentials API to `Rails.application.credentials` to store my AWS credentials and bucket information which never leaves our server
+    - I use Direct Upload to save images to S3 storage which uses MD5 algorithm to hash the data of the file we are trying to upload.
+    - Files are not transferred through our servers so bandwidth and even the slowest mobile clients are not a problem.
+    - The signed_url sent by the s3 bucket is only valid to use for a short period of time.
+    
 
 #### Upcomming
 - Bulk Upload
