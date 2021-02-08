@@ -14,7 +14,7 @@ React
 * rails 6.0.3.2
 * postgres 10
 ```
-* Setup
+#### Setup
 ```
 git clone https://github.com/amanpatel123/image-repository.git
 cd image-repository
